@@ -30,6 +30,8 @@ public class Ventana extends JFrame{
 		
 		this.add(etiqueta1);
 		
+		//esto es un comentario
+		
 	}
 
 }
