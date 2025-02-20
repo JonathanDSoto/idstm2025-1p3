@@ -2,6 +2,9 @@ package aplication;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -10,12 +13,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import java.awt.Dimension;
+import javax.swing.JButton;  
 import javax.swing.JTextField;
 
 public class Ventana extends JFrame{
 	
-	
-	Font fuente = new Font("Annai MN",Font.BOLD,32);
+	Font etiquetas = new Font("Annai MN",Font.BOLD,32);
 
 	public Ventana(String title) {
 		
@@ -33,50 +37,64 @@ public class Ventana extends JFrame{
 		this.setLocationRelativeTo(null);
 		
 		
-		this.add(this.login());
+		//this.add(this.login());
 		
-		this.add(this.registro());
+		//this.add(this.registro());
+		
+		this.test();
 		
 		this.repaint();
-		this.revalidate();
+		this.revalidate(); 
+		this.setMinimumSize(new Dimension(400,400));
 		
-		//esto es un comentario
+		this.setMaximumSize(new Dimension(600,600));
+		
 		
 	}
 	
 	public JPanel login() {
 		
-		JPanel mipanel = new JPanel();
-		mipanel.setSize(500,500);
-		mipanel.setLayout(null);
+		JPanel login = new JPanel();
+		login.setLocation(0, 0);
+		login.setSize(500, 500);
+		login.setOpaque(true);
+		login.setBackground(new Color(229, 114, 126));
+		login.setVisible(true);
+		login.setLayout(null);
 		
 		JLabel etiqueta1 = new JLabel("Bienvenido");
-		
-		etiqueta1.setSize(180, 30);
-		etiqueta1.setLocation(150, 10);
+		etiqueta1.setSize(160, 40);
+		etiqueta1.setLocation(160,10);
 		etiqueta1.setBackground(Color.ORANGE);
 		etiqueta1.setOpaque(true);
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
-		etiqueta1.setFont(fuente);
+		etiqueta1.setFont(etiquetas);
+		login.add(etiqueta1);
 		
-		mipanel.add(etiqueta1);
-		
-		
-		JLabel email_tag = new JLabel();
-		email_tag.setText("Ingrese su correo electrónico: ");
-		email_tag.setLocation(30, 90);
-		email_tag.setSize(200, 30);
-		email_tag.setBorder(BorderFactory.createLineBorder(Color.black) );
-		mipanel.add(email_tag);
-		
-		
+		JLabel etiqueta2 = new JLabel("Correo");
+		etiqueta2.setBounds(60, 150,160, 30); 
+		etiqueta2.setBackground(Color.WHITE);
+		etiqueta2.setOpaque(true);
+		etiqueta2.setFont(etiquetas);
+		//login.add(etiqueta2);
 		
 		JTextField email = new JTextField();
-		email.setSize(180, 40);
-		email.setLocation(30, 130);
-		mipanel.add(email);
+		email.setBounds(60, 200,260, 30);  
+		email.setFont(etiquetas);
+		email.setBackground(Color.GREEN);
+		email.setOpaque(true);
+		//login.add(email);
 		
-		return mipanel;
+		JButton access = new JButton("Acceder");
+		access.setBounds(60, 300,260, 60);  
+		access.setFont(etiquetas);
+		access.setBackground(Color.GREEN);
+		access.setOpaque(true);
+		//login.add(access);
+			
+		login.revalidate();
+		
+		return login;
 	}
 	
 	public JPanel registro()
@@ -93,7 +111,7 @@ public class Ventana extends JFrame{
 		etiqueta1.setBackground(Color.ORANGE);
 		etiqueta1.setOpaque(true);
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
-		etiqueta1.setFont(fuente);
+		etiqueta1.setFont(etiquetas);
 		
 		mipanel.add(etiqueta1);
 		
@@ -138,6 +156,37 @@ public class Ventana extends JFrame{
 		
 		
 		return mipanel;
+	}
+	
+	public void test() {
+		
+		
+		JPanel mipanel = new JPanel();
+		mipanel.setSize(500,500);
+		mipanel.setLocation(500, 0);
+		mipanel.setLayout(null);
+		
+		String botones[] = {"CE","","","","7","8","9","/","4","5","6","*"};
+		
+		int x = 0, y = 0;
+		
+		for (String text_button : botones) {
+			
+			JButton item = new JButton(text_button);
+			item.setSize(40, 40);
+			if(text_button.equals(""))
+				item.setEnabled(false);
+			item.setLocation(x, y);
+			
+			x+=40;
+			y+=40;
+			
+			if(x>120)
+				x=0;
+			
+		}
+		
+		
 	}
 }
 
