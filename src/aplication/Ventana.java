@@ -1,7 +1,9 @@
 package aplication;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
@@ -11,21 +13,29 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
+
 import java.awt.Dimension;
-import javax.swing.JButton;  
+import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JTextField;
+import javax.swing.border.TitledBorder;
 
 public class Ventana extends JFrame{
 	
 	Font etiquetas = new Font("Annai MN",Font.BOLD,32);
+	Font tags = new Font("Annai MN",Font.BOLD,22);
 
 	public Ventana(String title) {
 		
 		this.setTitle(title);
 		this.setVisible(true);
-		this.setSize(1000, 500);
+		this.setSize(1000, 600);
 		
 		this.setResizable(true);
 		this.setLayout(null);
@@ -41,14 +51,44 @@ public class Ventana extends JFrame{
 		
 		//this.add(this.registro());
 		
-		this.test();
+		this.add(this.test());
+		
+		this.setMinimumSize(new Dimension(400,400));
+		this.setMaximumSize(new Dimension(600,600));
+		
+		
+		JMenuBar barra = new JMenuBar(); //barra de menus
+		
+		JMenu menu1 = new JMenu("Archivo");
+		JMenu menu2 = new JMenu("Ayuda");
+		
+		JMenuItem op_new = new JMenuItem("Nuevo");
+		JMenuItem op_open = new JMenuItem("Abrir");
+		JMenuItem op_save = new JMenuItem("Guardar");
+		JMenuItem op_close = new JMenuItem("Cerrar");
+		
+		menu1.add(op_new);
+		menu1.add(op_open);
+		menu1.add(op_save);
+		menu1.add(op_close);
+		
+		JMenu menu3 = new JMenu("Segundo nivel");
+		menu1.add(menu3);
+		
+		JRadioButtonMenuItem op_help = new JRadioButtonMenuItem("Manual de usuario");
+		JCheckBoxMenuItem op_support = new JCheckBoxMenuItem("Soporte");
+		
+		menu2.add(op_help);
+		menu2.add(op_support);
+		
+		
+		barra.add(menu1);
+		barra.add(menu2);
+		
+		this.setJMenuBar(barra);
 		
 		this.repaint();
 		this.revalidate(); 
-		this.setMinimumSize(new Dimension(400,400));
-		
-		this.setMaximumSize(new Dimension(600,600));
-		
 		
 	}
 	
@@ -63,7 +103,7 @@ public class Ventana extends JFrame{
 		login.setLayout(null);
 		
 		JLabel etiqueta1 = new JLabel("Bienvenido");
-		etiqueta1.setSize(160, 40);
+		etiqueta1.setSize(200, 40);
 		etiqueta1.setLocation(160,10);
 		etiqueta1.setBackground(Color.ORANGE);
 		etiqueta1.setOpaque(true);
@@ -72,25 +112,24 @@ public class Ventana extends JFrame{
 		login.add(etiqueta1);
 		
 		JLabel etiqueta2 = new JLabel("Correo");
-		etiqueta2.setBounds(60, 150,160, 30); 
-		etiqueta2.setBackground(Color.WHITE);
-		etiqueta2.setOpaque(true);
-		etiqueta2.setFont(etiquetas);
-		//login.add(etiqueta2);
+		etiqueta2.setBounds(60, 150,160, 30);   
+		etiqueta2.setFont(tags);
+		etiqueta2.setForeground(Color.white);
+		login.add(etiqueta2);
 		
 		JTextField email = new JTextField();
 		email.setBounds(60, 200,260, 30);  
-		email.setFont(etiquetas);
-		email.setBackground(Color.GREEN);
-		email.setOpaque(true);
-		//login.add(email);
+		email.setFont(tags);
+		//email.setBackground(Color.GREEN);
+		//email.setOpaque(true);
+		login.add(email);
 		
 		JButton access = new JButton("Acceder");
 		access.setBounds(60, 300,260, 60);  
 		access.setFont(etiquetas);
 		access.setBackground(Color.GREEN);
 		access.setOpaque(true);
-		//login.add(access);
+		login.add(access);
 			
 		login.revalidate();
 		
@@ -158,36 +197,70 @@ public class Ventana extends JFrame{
 		return mipanel;
 	}
 	
-	public void test() {
+	public JPanel test() {
+		
+		JPanel test = new JPanel();
+		test.setLocation(0, 0);
+		test.setSize(500, 500);
+		test.setOpaque(true);
+		test.setBackground(new Color(229, 114, 126));
+		test.setVisible(true);
+		test.setLayout(new BorderLayout());
+		
+		JLabel etiqueta1 = new JLabel("Interés");
+		etiqueta1.setSize(200, 40);
+		etiqueta1.setLocation(160,10);
+		etiqueta1.setBackground(Color.ORANGE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.LEFT);
+		etiqueta1.setFont(etiquetas);
+		test.add(etiqueta1,BorderLayout.NORTH);
+		
+		TitledBorder title = BorderFactory.createTitledBorder("Calcular interés");
+		
+		JPanel calculadora = new JPanel(); 
+		calculadora.setOpaque(true);
+		calculadora.setBackground(new Color(130, 220, 121));
+		calculadora.setVisible(true); 
+		calculadora.setBorder(title);
+		calculadora.setLayout(new GridLayout(4,2));
+		test.add(calculadora,BorderLayout.CENTER);
+		
+		//items de la calculadora
+		
+
+		//items de la calculadora
+		
+		JPanel footer = new JPanel();
+		footer.setOpaque(true);
+		footer.setBackground(new Color(207,147,240));
+		footer.setVisible(true);
+		footer.setLayout(new GridLayout(2,2,20,20));
+		
+		//items del footer
+		
+		JLabel interes_tag = new JLabel("Interés:");
+		JTextField interes_input = new JTextField("315.000002");
+		
+		JLabel amount_tag = new JLabel("Monto:");
+		JTextField amount_input = new JTextField("1815.000002");
+		
+		footer.add(interes_tag);
+		footer.add(interes_input);
+		
+		footer.add(amount_tag);
+		footer.add(amount_input);
+		
+		//items del footer
 		
 		
-		JPanel mipanel = new JPanel();
-		mipanel.setSize(500,500);
-		mipanel.setLocation(500, 0);
-		mipanel.setLayout(null);
-		
-		String botones[] = {"CE","","","","7","8","9","/","4","5","6","*"};
-		
-		int x = 0, y = 0;
-		
-		for (String text_button : botones) {
-			
-			JButton item = new JButton(text_button);
-			item.setSize(40, 40);
-			if(text_button.equals(""))
-				item.setEnabled(false);
-			item.setLocation(x, y);
-			
-			x+=40;
-			y+=40;
-			
-			if(x>120)
-				x=0;
-			
-		}
-		
+		test.add(footer,BorderLayout.PAGE_END);
+	
+		return test;
 		
 	}
+
+	
 }
 
 
