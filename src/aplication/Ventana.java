@@ -242,6 +242,8 @@ public class Ventana extends JFrame{
 		JLabel interes_tag = new JLabel("Interés:");
 		JTextField interes_input = new JTextField("315.000002");
 		
+		interes_tag.setBorder(BorderFactory.createMatteBorder(10,60,10,10,new Color(207,147,240)));
+		
 		JLabel amount_tag = new JLabel("Monto:");
 		JTextField amount_input = new JTextField("1815.000002");
 		
