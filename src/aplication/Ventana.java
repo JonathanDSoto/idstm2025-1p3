@@ -1,13 +1,20 @@
 package aplication;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -37,6 +44,7 @@ public class Ventana extends JFrame{
 		this.setVisible(true);
 		this.setSize(1000, 600);
 		
+		//this.setBackground(Color.black);		
 		this.setResizable(true);
 		this.setLayout(null);
 		
@@ -47,11 +55,14 @@ public class Ventana extends JFrame{
 		this.setLocationRelativeTo(null);
 		
 		
-		//this.add(this.login());
+		this.add(this.login());
 		
 		//this.add(this.registro());
 		
-		this.add(this.test());
+		//this.add(this.test());
+		
+		
+		
 		
 		this.setMinimumSize(new Dimension(400,400));
 		this.setMaximumSize(new Dimension(600,600));
@@ -129,6 +140,22 @@ public class Ventana extends JFrame{
 		access.setFont(etiquetas);
 		access.setBackground(Color.GREEN);
 		access.setOpaque(true);
+		
+		access.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hola");
+				
+				if( email.getText().equals("") ) {
+					
+					email.setBorder(BorderFactory.createLineBorder(Color.red,10));
+					
+				}
+				
+			} 
+		});
+		
 		login.add(access);
 			
 		login.revalidate();
@@ -261,7 +288,76 @@ public class Ventana extends JFrame{
 		return test;
 		
 	}
-
+	
+	@Override
+	public void paint(Graphics g) {
+		
+		super.paint(g);
+		
+		/*Graphics2D g2 = (Graphics2D) g;
+		
+		g2.setColor(Color.red);
+		
+		g2.drawRect(80, 80, 400, 400);
+		g2.fillRect(200, 200, 200, 200);
+		g2.clearRect(220, 220, 50, 50);
+		
+		g2.setColor(Color.blue);
+		g2.fillRoundRect(400, 80, 200, 200, 30, 30);
+		
+		
+		g2.setColor(Color.green);
+		
+		g2.setStroke(new BasicStroke(10));
+		g2.drawLine(100,100,900,500);
+		
+		g2.setStroke(new BasicStroke(5));
+		
+		g2.setColor(new Color(229, 114, 126));
+		g2.drawOval(400, 400, 90, 90);
+		g2.fillOval(400, 450, 75, 150);
+		
+		
+		g2.setColor(new Color(207,147,240));
+		
+		g2.drawArc(600,200,200,200,1,-180);
+		g2.fillArc(600,200,200,200,1,180);
+		
+		
+		g2.setColor(Color.decode("#33A7F1"));
+		g2.setFont(etiquetas);
+		
+		g2.drawString("Hola crayola", 350, 200);
+		
+		BufferedImage image;
+		try {
+			
+			image = ImageIO.read(new File("4th-of-july.png"));
+		
+			g2.drawImage(image,
+	                 800,
+	                 250,
+	                 100,
+	                 100, Color.gray, null);
+		
+		
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+		
+		int[] xs = {100,100,400};
+		int[] ys = {100,200,400};
+		
+		g2.drawPolygon(xs,ys,3);
+		
+		int[] xs2 = {600,500,100};
+		int[] ys2 = {600,200,150};
+		
+		//g2.fillPolygon(xs2,ys2,3);
+		
+		//this.repaint();
+		*/
+	}
 	
 }
 
