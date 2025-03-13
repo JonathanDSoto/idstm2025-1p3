@@ -9,10 +9,12 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -64,24 +66,47 @@ public class Ventana extends JFrame{
 		
 		
 		
-		this.setMinimumSize(new Dimension(400,400));
-		this.setMaximumSize(new Dimension(600,600));
+		//this.setMinimumSize(new Dimension(400,400));
+		//this.setMaximumSize(new Dimension(600,600));
 		
 		
 		JMenuBar barra = new JMenuBar(); //barra de menus
 		
 		JMenu menu1 = new JMenu("Archivo");
 		JMenu menu2 = new JMenu("Ayuda");
+		JMenu menu4 = new JMenu("Cuenta");
 		
 		JMenuItem op_new = new JMenuItem("Nuevo");
 		JMenuItem op_open = new JMenuItem("Abrir");
 		JMenuItem op_save = new JMenuItem("Guardar");
 		JMenuItem op_close = new JMenuItem("Cerrar");
 		
+		JMenuItem ir_login = new JMenuItem("Acceder");
+		JMenuItem ir_registro = new JMenuItem("Registrarse");
+		
+		ir_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				manager("login");
+				
+			}});
+		
+		ir_registro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				manager("register");
+				
+			}});
+		
 		menu1.add(op_new);
 		menu1.add(op_open);
 		menu1.add(op_save);
 		menu1.add(op_close);
+		
+		menu4.add(ir_login);
+		menu4.add(ir_registro);
 		
 		JMenu menu3 = new JMenu("Segundo nivel");
 		menu1.add(menu3);
@@ -95,6 +120,7 @@ public class Ventana extends JFrame{
 		
 		barra.add(menu1);
 		barra.add(menu2);
+		barra.add(menu4);
 		
 		this.setJMenuBar(barra);
 		
@@ -155,6 +181,23 @@ public class Ventana extends JFrame{
 				
 			} 
 		});
+		
+		JButton ir_al_registro = new JButton("¿Aún no tienes cuenta?");
+		ir_al_registro.setLocation(60, 380);
+		ir_al_registro.setSize(200, 40);
+		
+		ir_al_registro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				manager("register");
+			}
+			
+		});
+		
+		login.add(ir_al_registro);
+		
 		
 		login.add(access);
 			
@@ -220,6 +263,22 @@ public class Ventana extends JFrame{
 		terminos.add(terms1);
 		terminos.add(terms2);
 		
+		
+		JButton ir_al_login = new JButton("¿Aún no tienes cuenta?");
+		ir_al_login.setLocation(60, 380);
+		ir_al_login.setSize(200, 40);
+		
+		ir_al_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				manager("login");
+			}
+			
+		});
+		
+		mipanel.add(ir_al_login);
 		
 		return mipanel;
 	}
@@ -289,8 +348,26 @@ public class Ventana extends JFrame{
 		
 	}
 	
+	public void manager(String target) {
+	
+		this.getContentPane().removeAll();
+		
+		
+		if(target.equals("register")) {
+			this.add(this.registro());
+		}
+		
+		if(target.equals("login")) {
+			this.add(this.login());
+		} 
+		
+		this.repaint();
+		this.revalidate(); 
+		
+	}
+	
 	@Override
-	public void paint(Graphics g) {
+ 	public void paint(Graphics g) {
 		
 		super.paint(g);
 		
