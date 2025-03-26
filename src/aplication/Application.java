@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+import javax.swing.JCheckBox;
 
 public class Application {
 
@@ -60,41 +62,48 @@ public class Application {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("ACCEDER");
-		lblNewLabel.setForeground(new Color(238, 251, 250));
-		lblNewLabel.setFont(new Font("Kefa", Font.ITALIC, 24));
-		lblNewLabel.setBounds(136, 35, 149, 26);
+		JLabel lblNewLabel_7 = new JLabel("New label");
+		lblNewLabel_7.setIcon(new ImageIcon(Application.class.getResource("/aplication/logouabcs1.png")));
+		lblNewLabel_7.setBounds(642, 52, 137, 59);
+		panel.add(lblNewLabel_7);
+		
+		JLabel lblNewLabel = new JLabel("UABCS - DASC\n");
+		lblNewLabel.setForeground(new Color(0, 0, 0));
+		lblNewLabel.setFont(new Font("Kefa", Font.PLAIN, 24));
+		lblNewLabel.setBounds(107, 35, 210, 26);
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel);
 		
+		/*
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setOpaque(true);
 		lblNewLabel_1.setBackground(new Color(228, 192, 250));
-		lblNewLabel_1.setBounds(124, 25, 183, 47);
+		lblNewLabel_1.setBounds(124, 25, 183, 47); 
 		panel.add(lblNewLabel_1);
+		*/
+		
+		JLabel lblNewLabel_8 = new JLabel("");
+		lblNewLabel_8.setBounds(36, 186, 353, 81);
+		lblNewLabel_8.setBorder(BorderFactory.createTitledBorder("Correo electrónico"));
+		panel.add(lblNewLabel_8);
 		
 		textField = new JTextField();
-		textField.setBounds(94, 198, 265, 42);
+		textField.setBackground(new Color(218, 230, 225));
+		textField.setBounds(49, 211, 328, 42);
 		panel.add(textField);
+		textField.setBorder(new LineBorder(new Color(91, 253, 255), 1, true));
+		textField.setBorder(null);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Correo electrónico");
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
-		lblNewLabel_2.setForeground(new Color(0, 0, 0));
-		lblNewLabel_2.setBounds(35, 170, 246, 16);
-		panel.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Contraseña");
-		lblNewLabel_3.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
-		lblNewLabel_3.setForeground(new Color(0, 0, 0));
-		lblNewLabel_3.setBounds(41, 267, 169, 16);
-		panel.add(lblNewLabel_3);
-		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(94, 295, 265, 37);
+		passwordField.setBackground(new Color(218, 230, 225));
+		passwordField.setBounds(49, 300, 295, 42);
 		panel.add(passwordField);
 		
 		JButton btnNewButton = new JButton("Acceder");
+		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setOpaque(true);
+		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -140,19 +149,43 @@ public class Application {
 				
 			}
 		});
-		btnNewButton.setBounds(124, 374, 192, 37);
+		btnNewButton.setBounds(36, 413, 341, 37);
 		panel.add(btnNewButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon(Application.class.getResource("/aplication/mail.png")));
-		lblNewLabel_4.setBounds(35, 205, 37, 31);
-		panel.add(lblNewLabel_4);
+		JLabel lblNewLabel_1 = new JLabel("Sabiduría como meta, patria como destino ");
+		lblNewLabel_1.setBounds(69, 73, 308, 16);
+		lblNewLabel_1.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_5.setIcon(new ImageIcon(Application.class.getResource("/aplication/padlock.png")));
-		lblNewLabel_5.setBounds(35, 285, 55, 47);
-		panel.add(lblNewLabel_5);
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(Application.class.getResource("/aplication/redd-francisco-9o8YdYGTT64-unsplash.jpg")));
+		lblNewLabel_6.setBounds(531, 6, 383, 494);
+		lblNewLabel_6.setBorder(BorderFactory.createLineBorder(Color.white,5,true));
+		panel.add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("Ingresa al panel administrador");
+		lblNewLabel_2_1.setForeground(Color.BLACK);
+		lblNewLabel_2_1.setFont(new Font("Lucida Grande", Font.PLAIN, 21));
+		lblNewLabel_2_1.setBounds(49, 109, 340, 39);
+		lblNewLabel_2_1.setHorizontalAlignment(JLabel.CENTER);
+		panel.add(lblNewLabel_2_1);
+		
+		JLabel lblNewLabel_8_1 = new JLabel("");
+		lblNewLabel_8_1.setBorder(BorderFactory.createTitledBorder("Contraseña"));
+		lblNewLabel_8_1.setBounds(36, 279, 353, 81);
+		panel.add(lblNewLabel_8_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(Application.class.getResource("/aplication/hidden.png")));
+		lblNewLabel_2.setBounds(351, 315, 24, 16);
+		panel.add(lblNewLabel_2);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Recordar contraseña");
+		chckbxNewCheckBox.setBounds(36, 372, 180, 23);
+		panel.add(chckbxNewCheckBox);
+		
+		JLabel lblNewLabel_3 = new JLabel("¿Aún no tienes cuenta?");
+		lblNewLabel_3.setBounds(225, 462, 152, 16);
+		panel.add(lblNewLabel_3);
 	}
 }
