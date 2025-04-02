@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -29,9 +31,12 @@ public class Paint implements MouseListener, MouseMotionListener {
 	private JFrame frame;
 	private PaintPanel panel_2;
 	
-	private ArrayList<Point> puntos = new ArrayList<Point>();
+	private int tool = 1,grosor = 3;
+	public Color color = Color.black;
 	
-	List<List<Point>> listaDePuntos = new ArrayList<>(); 
+	private ArrayList<MyPoint> puntos = new ArrayList<MyPoint>();
+	private ArrayList<Figura> figuras = new ArrayList<Figura>();
+	List<List<MyPoint>> listaDePuntos = new ArrayList<>(); 
 	/**
 	 * Launch the application.
 	 */
@@ -77,15 +82,89 @@ public class Paint implements MouseListener, MouseMotionListener {
 		JButton btnNewButton = new JButton("Limpiar");
 		panel_1.add(btnNewButton);
 		
+		JLabel lblNewLabel = new JLabel("1");
+		
 		JButton btnNewButton_1 = new JButton("-");
+		btnNewButton_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				grosor -= 1;
+				lblNewLabel.setText(grosor+"");
+			}
+			
+		});
 		panel_1.add(btnNewButton_1);
 		
-		JLabel lblNewLabel = new JLabel("1");
+		
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		panel_1.add(lblNewLabel);
 		
 		JButton btnNewButton_2 = new JButton("+");
+		btnNewButton_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				grosor += 1;
+				lblNewLabel.setText(grosor+"");
+			}
+			
+		});
 		panel_1.add(btnNewButton_2);
+		
+		JButton brocha = new JButton("brocha");
+		brocha.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tool = 1;
+			}
+			
+		});
+		panel_1.add(brocha);
+		
+		JButton cuadrado = new JButton("cuadrado");
+		cuadrado.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tool = 2;
+			}
+			
+		});
+		panel_1.add(cuadrado);
+		
+		JButton rojo = new JButton("");
+		rojo.setOpaque(true);
+		rojo.setBackground(Color.red);
+		rojo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				color = Color.red;
+			}
+			
+		});
+		panel_1.add(rojo);
+		
+		JButton azul = new JButton("");
+		azul.setOpaque(true);
+		azul.setBackground(Color.blue);
+		azul.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				color = Color.blue;
+			}
+			
+		});
+		panel_1.add(azul);
 		
 		panel_2 = new PaintPanel();
 		
@@ -98,7 +177,11 @@ public class Paint implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(tool == 2) {
+			
+			figuras.add(new Figura(e.getX(),e.getY(),80,80));
+			panel_2.repaint();
+		}
 	}
 
 	@Override
@@ -110,14 +193,17 @@ public class Paint implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		
-		//crear una copia de los puntos
-		ArrayList ArrList2  = (ArrayList)puntos.clone();
+		if(tool == 1) { 
+			//crear una copia de los puntos
+			ArrayList ArrList2  = (ArrayList)puntos.clone();
+			
+			//se guarda en el historial de dibujos
+			listaDePuntos.add(ArrList2);
+			
+			//limpiamos el trazo actual
+			puntos.clear();
 		
-		//se guarda en el historial de dibujos
-		listaDePuntos.add(ArrList2);
-		
-		//limpiamos el trazo actual
-		puntos.clear();
+		}
 		
 		
 	}
@@ -134,15 +220,22 @@ public class Paint implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		panel_2.repaint();
 		
-		puntos.add(e.getPoint());
+		if(tool == 1) {
+			panel_2.repaint();
+			
+			
+			puntos.add(new MyPoint(e.getX(),e.getY(),grosor,color));
+			
+			
+		}
+		
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) { 
-		
+		panel_2.repaint();
 	}
 	
 	class PaintPanel extends JPanel{
@@ -166,23 +259,39 @@ public class Paint implements MouseListener, MouseMotionListener {
 	    	   
 	    	   for (int i = 1; i < puntos.size(); i++) {
 	    		   
-	    		   Point p1 = puntos.get(i-1);
-	    		   Point p2 = puntos.get(i);
+	    		   MyPoint p1 = puntos.get(i-1);
+	    		   MyPoint p2 = puntos.get(i);
 	    		   
+	    		   g2.setStroke(new BasicStroke(p1.g));
+	    		   g2.setColor(p1.c); 
 	    		   g2.drawLine(p1.x,p1.y,p2.x,p2.y);
 	    	   }
 	    	   
 	       }
 	       
+	       if(figuras.size()>0) {
+	    	   
+	    	   for (int i = 1; i < figuras.size(); i++) {
+	    		   
+	    		   Figura f = figuras.get(i);
+	    		   
+	    		   g2.drawRect(f.x,f.y,f.w,f.h); 
+	    	   }
+	    	   
+	       }
+	       
 	       for (Iterator iterator = listaDePuntos.iterator(); iterator.hasNext();) {
-			List<Point> trazo = (List<Point>) iterator.next();
+			List<MyPoint> trazo = (List<MyPoint>) iterator.next();
 			
 				if(trazo.size()>1) {
 		    	   
 		    	   for (int i = 1; i < trazo.size(); i++) {
 		    		   
-		    		   Point p1 = trazo.get(i-1);
-		    		   Point p2 = trazo.get(i);
+		    		   MyPoint p1 = trazo.get(i-1);
+		    		   MyPoint p2 = trazo.get(i);
+		    		   
+		    		   g2.setStroke(new BasicStroke(p1.g));
+		    		   g2.setColor(p1.c); 
 		    		   
 		    		   g2.drawLine(p1.x,p1.y,p2.x,p2.y);
 		    	   }
@@ -193,5 +302,37 @@ public class Paint implements MouseListener, MouseMotionListener {
 	   }
 		
 	}
+	
+	class Figura{
+		
+		public int x,y,w,h,t;
+		
+		public Figura(int x, int y, int w,int h)
+		{
+			this.x=x;
+			this.y = y;
+			this.w = w;
+			this.h = h;
+		} 
+		
+	}
+
+	class MyPoint{
+		
+		public int x,y,g;
+		
+		public Color c;
+		
+		public MyPoint(int x, int y, int g, Color c) {
+			
+			this.x = x; 
+			this.y = y;
+			this.g = g; 
+			this.c = c;
+		}
+	}
+
+
+
 
 }
