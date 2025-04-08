@@ -23,6 +23,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import javax.swing.JLabel;
 
@@ -33,6 +34,7 @@ public class Paint implements MouseListener, MouseMotionListener {
 	
 	private int tool = 1,grosor = 3;
 	public Color color = Color.black;
+	Boolean relleno = false;
 	
 	private ArrayList<MyPoint> puntos = new ArrayList<MyPoint>();
 	private ArrayList<Figura> figuras = new ArrayList<Figura>();
@@ -80,6 +82,20 @@ public class Paint implements MouseListener, MouseMotionListener {
 		panel_1.setLayout(new GridLayout(5, 1, 0, 0));
 		
 		JButton btnNewButton = new JButton("Limpiar");
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				puntos.clear();
+				figuras.clear();
+				listaDePuntos.clear();
+				panel_2.repaint();
+				
+			}
+			
+		});
 		panel_1.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("1");
@@ -92,6 +108,11 @@ public class Paint implements MouseListener, MouseMotionListener {
 				// TODO Auto-generated method stub
 				grosor -= 1;
 				lblNewLabel.setText(grosor+"");
+				
+				//opción 1
+				relleno = !relleno;
+				//opción 2
+				relleno = ((relleno)?false:true);
 			}
 			
 		});
@@ -166,6 +187,18 @@ public class Paint implements MouseListener, MouseMotionListener {
 		});
 		panel_1.add(azul);
 		
+		JButton borrador = new JButton("Borrador"); 
+		borrador.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tool = 9;
+			}
+			
+		});
+		panel_1.add(borrador);
+		
 		panel_2 = new PaintPanel();
 		
 		panel_2.addMouseListener(this);
@@ -179,9 +212,11 @@ public class Paint implements MouseListener, MouseMotionListener {
 		// TODO Auto-generated method stub
 		if(tool == 2) {
 			
-			figuras.add(new Figura(e.getX(),e.getY(),80,80));
-			panel_2.repaint();
+			figuras.add(new Figura(e.getX(),e.getY(),80,80,color,tool));
+			
 		}
+		
+		panel_2.repaint();
 	}
 
 	@Override
@@ -221,20 +256,27 @@ public class Paint implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		
-		if(tool == 1) {
-			panel_2.repaint();
-			
-			
+		if(tool == 1) { 
 			puntos.add(new MyPoint(e.getX(),e.getY(),grosor,color));
-			
 			
 		}
 		
+		if(tool == 9) {
+			
+			figuras.add(new Figura(e.getX(),e.getY(),80,80,Color.white,9));
+		}
+		
+		panel_2.repaint(); 
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) { 
+		
+		if(tool == 9) {
+			
+			//figuras.add(new Figura(e.getX(),e.getY(),80,80,Color.white,tool));
+		}
 		panel_2.repaint();
 	}
 	
@@ -269,16 +311,7 @@ public class Paint implements MouseListener, MouseMotionListener {
 	    	   
 	       }
 	       
-	       if(figuras.size()>0) {
-	    	   
-	    	   for (int i = 1; i < figuras.size(); i++) {
-	    		   
-	    		   Figura f = figuras.get(i);
-	    		   
-	    		   g2.drawRect(f.x,f.y,f.w,f.h); 
-	    	   }
-	    	   
-	       }
+	       
 	       
 	       for (Iterator iterator = listaDePuntos.iterator(); iterator.hasNext();) {
 			List<MyPoint> trazo = (List<MyPoint>) iterator.next();
@@ -299,6 +332,34 @@ public class Paint implements MouseListener, MouseMotionListener {
 		       }
 			
 	       }
+	       
+	       if(figuras.size()>0) {
+	    	   
+	    	   for (int i = 1; i < figuras.size(); i++) {
+	    		   
+	    		   Figura f = figuras.get(i);
+	    		   g2.setColor(f.c); 
+	    		   
+	    		   if(f.t==9) {
+	    			   //Random rand = new Random(); 
+	    			   //g2.setColor(new Color(rand.nextInt(0xFFFFFF))); 
+	    			   
+	    			   //g2.setColor(Color.black);
+	    			   //g2.drawRect(f.x,f.y,f.w,f.h);
+	    			   g2.clearRect(f.x+1,f.y+1,f.w-1,f.h-1); 
+	    			    
+	    		   }
+	    		   if(f.t==2) {
+	    			   
+	    			   
+	    			   g2.drawRect(f.x,f.y,f.w,f.h); 
+	    			   
+	    		   }
+	    		   
+	    		   
+	    	   }
+	    	   
+	       }
 	   }
 		
 	}
@@ -306,13 +367,16 @@ public class Paint implements MouseListener, MouseMotionListener {
 	class Figura{
 		
 		public int x,y,w,h,t;
+		public Color c;
 		
-		public Figura(int x, int y, int w,int h)
+		public Figura(int x, int y, int w,int h,Color c,int t)
 		{
 			this.x=x;
 			this.y = y;
 			this.w = w;
 			this.h = h;
+			this.c = c;
+			this.t = t;
 		} 
 		
 	}
