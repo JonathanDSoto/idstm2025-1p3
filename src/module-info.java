@@ -4,6 +4,6 @@
 /**
  * 
  */
-module tm {
+module MVC2 {
 	requires java.desktop;
 }

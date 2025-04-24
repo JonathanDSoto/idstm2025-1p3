@@ -22,7 +22,7 @@ import models.AuthModel;
 
 
 public class AuthView {
-	
+
 	private JFrame frame;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -311,4 +311,5 @@ public class AuthView {
 		frame.repaint();
 		panel.repaint();
 	}
+
 }
