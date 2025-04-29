@@ -3,6 +3,7 @@ import views.AuthView;
 
 public class AuthController {
 	
+	//controlador
 	public AuthView view;
 	
 	public AuthController() {
