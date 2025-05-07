@@ -8,7 +8,7 @@
       "discountPercentage":10.48,
       "rating":2.56,
       "stock":99,
-      
+      "status":"active"
    },
    {
       "id":2,
@@ -19,6 +19,7 @@
       "discountPercentage":18.19,
       "rating":2.86,
       "stock":34,
+      "status":"active",
       "tags":[
          "beauty",
          "eyeshadow"
@@ -79,6 +80,7 @@
       "discountPercentage":9.84,
       "rating":4.64,
       "stock":89,
+      "status":"active",
       "tags":[
          "beauty",
          "face powder"
@@ -139,6 +141,7 @@
       "discountPercentage":12.16,
       "rating":4.36,
       "stock":91,
+      "status":"active",
       "tags":[
          "beauty",
          "lipstick"
@@ -199,6 +202,7 @@
       "discountPercentage":11.44,
       "rating":4.32,
       "stock":79,
+      "status":"active",
       "tags":[
          "beauty",
          "nail polish"
@@ -259,6 +263,7 @@
       "discountPercentage":1.89,
       "rating":4.37,
       "stock":29,
+      "status":"active",
       "tags":[
          "fragrances",
          "perfumes"
@@ -321,6 +326,7 @@
       "discountPercentage":16.51,
       "rating":4.26,
       "stock":58,
+      "status":"active",
       "tags":[
          "fragrances",
          "perfumes"
@@ -383,6 +389,7 @@
       "discountPercentage":14.72,
       "rating":3.8,
       "stock":98,
+      "status":"active",
       "tags":[
          "fragrances",
          "perfumes"
@@ -445,6 +452,7 @@
       "discountPercentage":0.62,
       "rating":3.96,
       "stock":4,
+      "status":"active",
       "tags":[
          "fragrances",
          "perfumes"
@@ -507,6 +515,7 @@
       "discountPercentage":14.39,
       "rating":2.74,
       "stock":91,
+      "status":"active",
       "tags":[
          "fragrances",
          "perfumes"
@@ -569,6 +578,7 @@
       "discountPercentage":8.57,
       "rating":4.77,
       "stock":88,
+      "status":"active",
       "tags":[
          "furniture",
          "beds"
@@ -631,6 +641,7 @@
       "discountPercentage":14.4,
       "rating":3.92,
       "stock":60,
+      "status":"active",
       "tags":[
          "furniture",
          "sofas"
@@ -693,6 +704,7 @@
       "discountPercentage":19.09,
       "rating":2.87,
       "stock":64,
+      "status":"active",
       "tags":[
          "furniture",
          "bedside tables"
@@ -755,6 +767,7 @@
       "discountPercentage":2.01,
       "rating":4.88,
       "stock":26,
+      "status":"active",
       "tags":[
          "furniture",
          "office chairs"
@@ -817,6 +830,7 @@
       "discountPercentage":8.8,
       "rating":3.59,
       "stock":7,
+      "status":"active",
       "tags":[
          "furniture",
          "bathroom"
@@ -879,6 +893,7 @@
       "discountPercentage":12.62,
       "rating":4.19,
       "stock":8,
+      "status":"active",
       "tags":[
          "fruits"
       ],
@@ -937,6 +952,7 @@
       "discountPercentage":9.61,
       "rating":4.47,
       "stock":86,
+      "status":"active",
       "tags":[
          "meat"
       ],
@@ -995,6 +1011,7 @@
       "discountPercentage":9.58,
       "rating":3.13,
       "stock":46,
+      "status":"active",
       "tags":[
          "pet supplies",
          "cat food"
@@ -1054,6 +1071,7 @@
       "discountPercentage":13.7,
       "rating":3.19,
       "stock":97,
+      "status":"active",
       "tags":[
          "meat"
       ],
@@ -1113,6 +1131,7 @@
       "discountPercentage":9.33,
       "rating":4.8,
       "stock":10,
+      "status":"active",
       "tags":[
          "cooking essentials"
       ],
@@ -1171,6 +1190,7 @@
       "discountPercentage":0.16,
       "rating":4.07,
       "stock":84,
+      "status":"active",
       "tags":[
          "vegetables"
       ],
@@ -1229,6 +1249,7 @@
       "discountPercentage":10.27,
       "rating":4.55,
       "stock":71,
+      "status":"active",
       "tags":[
          "pet supplies",
          "dog food"
@@ -1288,6 +1309,7 @@
       "discountPercentage":11.05,
       "rating":2.53,
       "stock":9,
+      "status":"active",
       "tags":[
          "dairy"
       ],
@@ -1346,6 +1368,7 @@
       "discountPercentage":4.23,
       "rating":3.78,
       "stock":74,
+      "status":"active",
       "tags":[
          "seafood"
       ],
@@ -1404,6 +1427,7 @@
       "discountPercentage":0.16,
       "rating":3.25,
       "stock":33,
+      "status":"active",
       "tags":[
          "vegetables"
       ],
@@ -1462,6 +1486,7 @@
       "discountPercentage":1,
       "rating":3.66,
       "stock":3,
+      "status":"active",
       "tags":[
          "vegetables"
       ],
@@ -1520,6 +1545,7 @@
       "discountPercentage":14.4,
       "rating":3.97,
       "stock":34,
+      "status":"active",
       "tags":[
          "condiments"
       ],
@@ -1578,6 +1604,7 @@
       "discountPercentage":8.69,
       "rating":3.39,
       "stock":27,
+      "status":"active",
       "tags":[
          "desserts"
       ],
@@ -1639,6 +1666,7 @@
       "discountPercentage":12.06,
       "rating":3.94,
       "stock":50,
+      "status":"active",
       "tags":[
          "beverages"
       ],
@@ -1697,6 +1725,7 @@
       "discountPercentage":15.22,
       "rating":4.93,
       "stock":99,
+      "status":"active",
       "tags":[
          "fruits"
       ],

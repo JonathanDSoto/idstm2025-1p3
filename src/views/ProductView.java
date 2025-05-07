@@ -14,7 +14,9 @@ import javax.swing.JPanel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+
 import controllers.ProductController;
+import models.ProducModel;
 
 public class ProductView {
 
@@ -47,19 +49,39 @@ public class ProductView {
 		
 		for (Object product1 : data) {
 			
-			JSONObject product = (JSONObject) product1;
-			System.out.println(product.get("title"));
+			JSONObject product = (JSONObject) product1; 
 			
 			JLabel lblNewLabel2 = new JLabel((String) product.get("title"));
-			lblNewLabel2.setForeground(new Color(0, 0, 0));
-			//lblNewLabel2.setFont(new Font("Kefa", Font.PLAIN, 24));
+			lblNewLabel2.setForeground(new Color(0, 0, 0)); 
 			lblNewLabel2.setBounds(107, x, 210, 26);
 			lblNewLabel2.setHorizontalAlignment(JLabel.CENTER);
 			panel.add(lblNewLabel2);
 			
 			x+=35;
 			
+			JButton remove = new JButton("Eliminar");
+			remove.setName((Long) product.get("id")+"");
+			remove.setBounds(257, x, 210, 26);
+			remove.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) { 
+					
+					((JButton) e.getSource()).getName();
+					
+					System.out.println("Hola: "+((JButton) e.getSource()).getName());
+				
+					ProducModel pm = new ProducModel();
+					pm.remove();
+				}
+				
+			});
+			
+			panel.add(remove);
+			
 		}
+		
+		
 		
 		//data.forEach( emp -> parseTestData( (JSONObject) emp ) );
 		 
