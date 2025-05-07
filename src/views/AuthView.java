@@ -18,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import controllers.HomeController;
 import models.AuthModel;
 
 
@@ -117,6 +118,10 @@ public class AuthView {
 					if(user_auth) {
 						
 						JOptionPane.showMessageDialog(frame, "Bienvenido.");
+						frame.dispose();
+						
+						HomeController hc = new HomeController(); 
+						hc.home();
 						
 					}else {
 						JOptionPane.showMessageDialog(frame, "Error al acceder","verifique su información",JOptionPane.WARNING_MESSAGE);

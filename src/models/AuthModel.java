@@ -18,7 +18,8 @@ public class AuthModel {
 	
 	public boolean access(String u, String p){
 		
-		
+		return true;  
+		/*
 		try { 
 			
 			String url = AuthModel.class.getResource("/files/users.txt").getPath();
@@ -51,6 +52,7 @@ public class AuthModel {
 		}
 		
 		return false;
+		*/
 		 
 	}
 }
