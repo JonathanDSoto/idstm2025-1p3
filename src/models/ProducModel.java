@@ -65,7 +65,6 @@ public class ProducModel {
 		
 		JSONArray productList = get();
 		
-		JSONParser jsonParser = new JSONParser();
 		String url = AuthModel.class.getResource("/files/products.json").getPath();
         
 		 productList.remove(0); 
@@ -81,6 +80,32 @@ public class ProducModel {
          } catch (IOException e) {
              e.printStackTrace();
          }
+	}
+	
+	public boolean addProduct(String n)
+	{
+		
+		JSONArray productList = get();
+		JSONObject jsonObject = new JSONObject();
+		
+		String url = AuthModel.class.getResource("/files/products.json").getPath();
+		
+		
+		jsonObject.put("name", n);
+		jsonObject.put("title", n);
+		
+		productList.add(jsonObject);
+		
+		try (FileWriter file = new FileWriter(url)) {
+            file.write(productList.toString()); // Use toString(2) for pretty printing
+            file.flush();
+            file.close();
+            System.out.println("JSON array written to file successfully!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		return false;
 	}
 	
 	private static void parseTestData(JSONObject product)

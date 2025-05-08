@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -38,6 +39,21 @@ public class ProductView {
 		ventana.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		JButton add = new JButton("añadir producto");
+		add.setBounds(635, 70, 200, 40);
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ventana.dispose();
+				ProductController pc = new ProductController();
+				pc.add();
+			}
+			
+		});
+		panel.add(add);
+		
 		JLabel lblNewLabel = new JLabel("PRODUCTOS");
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Kefa", Font.PLAIN, 24));
@@ -45,7 +61,7 @@ public class ProductView {
 		lblNewLabel.setHorizontalAlignment(JLabel.CENTER);
 		panel.add(lblNewLabel);
 		
-		int x = 70;
+		int x = 90;
 		
 		for (Object product1 : data) {
 			
@@ -55,9 +71,7 @@ public class ProductView {
 			lblNewLabel2.setForeground(new Color(0, 0, 0)); 
 			lblNewLabel2.setBounds(107, x, 210, 26);
 			lblNewLabel2.setHorizontalAlignment(JLabel.CENTER);
-			panel.add(lblNewLabel2);
-			
-			x+=35;
+			panel.add(lblNewLabel2); 
 			
 			JButton remove = new JButton("Eliminar");
 			remove.setName((Long) product.get("id")+"");
@@ -73,11 +87,18 @@ public class ProductView {
 				
 					ProducModel pm = new ProducModel();
 					pm.remove();
+					
+					ventana.dispose();
+					
+					ProductController pc = new ProductController();
+					pc.products();
 				}
 				
 			});
 			
 			panel.add(remove);
+			
+			x+=35;
 			
 		}
 		
@@ -85,6 +106,55 @@ public class ProductView {
 		
 		//data.forEach( emp -> parseTestData( (JSONObject) emp ) );
 		 
+	}
+	
+	public void add()
+	{
+		
+		JFrame ventana = new JFrame();
+		
+		ventana.setBounds(100, 100, 920, 534);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ventana.setVisible(true);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		ventana.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		
+		JLabel nameTag = new JLabel("Nombre del producto");
+		nameTag.setBounds(100, 100, 200, 40);
+		panel.add(nameTag);
+		
+		JTextField nameInput = new JTextField();
+		nameInput.setBounds(100, 160, 200, 40);
+		panel.add(nameInput);
+		
+		
+		JButton add = new JButton("añadir producto");
+		add.setBounds(100, 450, 200, 40);
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				String name = nameInput.getText();
+				
+				ProducModel pm = new ProducModel();
+				pm.addProduct(name);
+				
+				ventana.dispose();
+				
+				ProductController pc = new ProductController();
+				pc.products();
+				
+			}});
+		panel.add(add); 
+		
+		
 	}
 	
 	private static void parseTestData(JSONObject product)
