@@ -18,8 +18,8 @@ public class AuthModel {
 	
 	public boolean access(String u, String p){
 		
-		return true;  
-		/*
+		 
+		
 		try { 
 			
 			String url = AuthModel.class.getResource("/files/users.txt").getPath();
@@ -34,7 +34,7 @@ public class AuthModel {
                 // el string cortarlo con Split 
                 // comparar con el arreglo en la pos 1,2
                 
-                if(u.equals("fake@mail.com") ) {
+                if(u.equals("jsoto@uabcs.mx") ) {
         			if(p.equals("12345")) { 
         				return true;  
         			}
@@ -52,7 +52,7 @@ public class AuthModel {
 		}
 		
 		return false;
-		*/
+		
 		 
 	}
 }

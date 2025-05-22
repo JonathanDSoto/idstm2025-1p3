@@ -82,7 +82,7 @@ public class ProducModel {
          }
 	}
 	
-	public boolean addProduct(String n)
+	public boolean addProduct(String n, String a, String b, double p)
 	{
 		
 		JSONArray productList = get();
