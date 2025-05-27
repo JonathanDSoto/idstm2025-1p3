@@ -27,5 +27,10 @@ public class UserController {
 		vista.showUsers(users);
 		
 	}
+	
+	public void add()
+	{
+		vista.showFormAdd();
+	}
 
 }
