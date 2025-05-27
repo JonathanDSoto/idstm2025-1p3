@@ -32,5 +32,10 @@ public class UserController {
 	{
 		vista.showFormAdd();
 	}
+	
+	public void update(User userToUpdate)
+	{
+		vista.showFormUpdate(userToUpdate);
+	}
 
 }
