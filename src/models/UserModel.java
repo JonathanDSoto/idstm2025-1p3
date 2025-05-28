@@ -95,7 +95,7 @@ public class UserModel {
 	
 	public boolean update(User user)
 	{
-		String query = "UPDATE `users` SET `name` = '"+user.name+"' WHERE `users`.`id` = "+user.id+";";
+		String query = "UPDATE `users` SET `name` = '"+user.name+"',   WHERE `users`.`id` = "+user.id+";";
 		Connection conn = null;
 		Statement stmt = null;
 		

@@ -66,6 +66,16 @@ public class UserView {
 			userlabel.setBounds(35, y, 200, 40);
 			contenido.add(userlabel);
 			
+			JButton updateUser = new JButton("✏️");
+			updateUser.setBounds(250, y, 50, 40);
+			updateUser.addActionListener(e -> {
+			    ventana.dispose();
+			    
+			    UserController uc = new UserController();
+			    uc.update(user);
+			});
+			contenido.add(updateUser);
+			
 			y+=45;
 		}
         
@@ -136,5 +146,63 @@ public class UserView {
 		});
         contenido.add(btnAdd);
 	}
-
+	
+	
+	public void showFormUpdate(User user)
+	{
+		JFrame ventana = new JFrame();
+		ventana.setBounds(100, 100, 920, 534);
+		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ventana.setVisible(true); 
+		
+		JPanel panel = new JPanel();
+        panel.setBackground(Color.WHITE);
+        panel.setLayout(new BorderLayout());
+        ventana.getContentPane().add(panel); 
+        
+        // ---------- TÍTULO ----------
+        JLabel lblTitle = new JLabel("USUARIOS", SwingConstants.CENTER);
+        lblTitle.setFont(new Font("SansSerif", Font.BOLD, 24));
+        lblTitle.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        panel.add(lblTitle, BorderLayout.NORTH);
+        
+        JPanel contenido = new JPanel();
+        panel.add(contenido, BorderLayout.CENTER);
+        contenido.setLayout(null);
+        
+        
+        JLabel nameTag = new JLabel("Ingrese su nombre");
+        nameTag.setBounds(35, 35, 300, 40);
+        contenido.add(nameTag);
+        
+        JTextField nameInput = new JTextField("");
+        nameInput.setBounds(35, 80, 200, 40);
+        nameInput.setText(user.name);
+        contenido.add(nameInput);
+        
+        
+        JButton btnAdd = new JButton("Actualizar");
+        btnAdd.setBounds(35, 120, 200, 40);
+        btnAdd.addActionListener(e -> {
+		    
+        	String name = nameInput.getText();
+        	
+        	user.name = name;
+        	
+        	UserModel um = new UserModel();
+        	 
+        	if(um.update(user))
+        	{
+        		ventana.dispose();
+        		UserController uc = new UserController();
+        		uc.users();
+        	}
+        	
+        	//;
+		    
+		    //
+		    //uc.add();
+		});
+        contenido.add(btnAdd);
+	}
 }
